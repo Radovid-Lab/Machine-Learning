@@ -1,0 +1,13 @@
+data=dlmread('fashion57_train.txt');
+trainlabel=[ones(32,1);2*ones(28,1)];
+traindata=prdataset(data,trainlabel);
+[objects features]=size(traindata);
+weight=ones(objects,1);
+[train_f train_t train_y]=decisionStu(traindata,weight);
+error1=testerr(traindata,weight,train_f,train_t,train_y);
+data=dlmread('fashion57_test.txt');
+testlabel=[ones(195,1);2*ones(205,1)];
+testdata=prdataset(data,testlabel);
+[objects features]=size(testdata);
+weight=ones(objects,1);
+error2=testerr(testdata,weight,train_f,train_t,train_y);
